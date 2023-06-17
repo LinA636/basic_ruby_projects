@@ -6,9 +6,9 @@ def caeserCipher(text, shift)
   cipher_array = text_array.map do |letter|
     ascii_number = letter.ord
     if ascii_number.between?(97, 122)
-      letter = adjustDownLetter(ascii_number, shift)
+      letter = adjustDownLetter(ascii_number, shift).chr
     elsif ascii_number.between?(65, 90)
-      letter = adjustUpLetter(ascii_number, shift)
+      letter = adjustUpLetter(ascii_number, shift).chr
     else
       letter = letter
     end
@@ -23,10 +23,10 @@ def adjustDownLetter(number, shift)
     diff = number + shift - 122
     number = 96 + diff
   else
-    diff = 97 - number - shift
+    diff = 97 - number - shift - 1
     number = 122 - diff
   end
-  return number.chr
+  return number
 end
 
 def adjustUpLetter(number, shift)
@@ -36,10 +36,10 @@ def adjustUpLetter(number, shift)
     diff = number + shift - 90
     number = 64 + diff
   else
-    diff = 65 - number - shift
+    diff = 65 - number - shift -1
     number = 90 - diff
   end
-  return number.chr
+  return number
 end
 
 text = "What a string!"
